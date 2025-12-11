@@ -1,0 +1,27 @@
+model User {
+    id                 String     @id @default(uuid())
+    email              String     @unique
+    fullName           String
+    password           String
+    phoneNumber        String?
+    profilePhoto       String?
+    address            String?
+    bio                String?
+    interests          String[]
+    gender             Gender?
+    dateOfBirth        DateTime?
+    pertcipatedEvents  Int        @default(0)
+    hostedEvents       Int        @default(0)
+    reviewCount        Int        @default(0)
+    role               UserRole   @default(USER)
+    status             UserStatus @default(ACTIVE)
+    isEmailVerified    Boolean    @default(false)
+    isDeleted          Boolean    @default(false)
+    createdAt          DateTime   @default(now())
+    updatedAt          DateTime   @updatedAt
+    events            Event[]
+    reviews           Review[]
+    payments          Payment[]
+    becomeHostRequest becomeHost?
+    @@map("users")
+}
