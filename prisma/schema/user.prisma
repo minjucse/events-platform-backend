@@ -22,6 +22,6 @@ model User {
     events            Event[]
     reviews           Review[]
     payments          Payment[]
-    becomeHostRequest becomeHost?
+    becomeHost        becomeHost?
     @@map("users")
 }

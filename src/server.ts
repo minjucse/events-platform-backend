@@ -1,46 +1,52 @@
-import { Server } from 'http';
-import app from './app';
-import config from './config';
-
+import { Server } from "http";
+import app from "./app";
+import { startEventStatusScheduler } from "./app/utils/eventStatusScheduler";
+import logger from "./app/utils/logger";
+import config from "./config";
 
 async function bootstrap() {
-    // This variable will hold our server instance
-    let server: Server;
+  let server: Server;
 
-    try {
-        // Start the server
-        server = app.listen(config.port, () => {
-            console.log(`🚀 Server is running on http://localhost:${config.port}`);
+  try {
+    server = app.listen(config.port, () => {
+      logger.info(
+        `🚀 Event Management Server is running on http://localhost:${config.port}`
+      );
+    });
+
+    startEventStatusScheduler();
+
+    // Function to gracefully shut down the server
+    const exitHandler = () => {
+      if (server) {
+        server.close(() => {
+          logger.info("Server closed gracefully.");
+          process.exit(1);
         });
-
-        // Function to gracefully shut down the server
-        const exitHandler = () => {
-            if (server) {
-                server.close(() => {
-                    console.log('Server closed gracefully.');
-                    process.exit(1); // Exit with a failure code
-                });
-            } else {
-                process.exit(1);
-            }
-        };
-
-        // Handle unhandled promise rejections
-        process.on('unhandledRejection', (error) => {
-            console.log('Unhandled Rejection is detected, we are closing our server...');
-            if (server) {
-                server.close(() => {
-                    console.log(error);
-                    process.exit(1);
-                });
-            } else {
-                process.exit(1);
-            }
-        });
-    } catch (error) {
-        console.error('Error during server startup:', error);
+      } else {
         process.exit(1);
-    }
+      }
+    };
+
+    process.on("unhandledRejection", (error) => {
+      logger.error(
+        "Unhandled Rejection is detected, we are closing our server..."
+      );
+      logger.error(error);
+      // if (server) {
+      //   server.close(async () => {
+      //     await disconnectRedis();
+      //     console.log(error);
+      //     process.exit(1);
+      //   });
+      // } else {
+      //   process.exit(1);
+      // }
+    });
+  } catch (error: any) {
+    logger.error("Error during server startup:", error);
+    process.exit(1);
+  }
 }
 
 bootstrap();
