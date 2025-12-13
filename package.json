@@ -1,9 +1,9 @@
 {
-  "name": "event-management-backend",
+  "name": "events-platform-backend",
   "version": "1.0.0",
   "main": "server.js",
-  "author": "Md Rokonuzzaman",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "prisma": {
     "schema": "./prisma/schema"
   },

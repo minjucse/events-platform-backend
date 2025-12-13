@@ -16,7 +16,6 @@ async function bootstrap() {
 
     startEventStatusScheduler();
 
-    // Function to gracefully shut down the server
     const exitHandler = () => {
       if (server) {
         server.close(() => {
@@ -33,15 +32,7 @@ async function bootstrap() {
         "Unhandled Rejection is detected, we are closing our server..."
       );
       logger.error(error);
-      // if (server) {
-      //   server.close(async () => {
-      //     await disconnectRedis();
-      //     console.log(error);
-      //     process.exit(1);
-      //   });
-      // } else {
-      //   process.exit(1);
-      // }
+     
     });
   } catch (error: any) {
     logger.error("Error during server startup:", error);

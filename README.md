@@ -85,7 +85,7 @@ A comprehensive event management platform built with Node.js, Express, Prisma, a
 ### 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd event-management-backend
+cd events-platform-backend
 ```
 
 ### 2. Install dependencies
@@ -439,19 +439,11 @@ npm start
 
 This project is licensed under the MIT License.
 
----
 
-## 👨‍💻 Author
-
-**Md Rokonuzzaman**
-
----
 
 ## 📞 Support
 
 For support, email support@eventPlatform.com or open an issue in the repository.
-
----
 
 ## 🎉 Acknowledgments
 
@@ -460,7 +452,5 @@ For support, email support@eventPlatform.com or open an issue in the repository.
 - Stripe for payment processing
 - Cloudinary for file storage
 - All contributors and supporters
-
-
 
 **Happy Coding! 🚀**
