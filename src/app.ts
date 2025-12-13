@@ -19,7 +19,8 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "http://localhost:3000",
-        "http://localhost:3001",,
+        "http://localhost:3001",
+        "https://events-platform-browser.vercel.app",
       ];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
