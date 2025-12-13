@@ -2,7 +2,7 @@ import express from "express";
 import { AuthRoutes } from "../modules/auth/auth.routes";
 // import { becomeHostRoutes } from "../modules/becomeHost/becomeHost.routes";
  import { eventRoutes } from "../modules/event/event.routes";
-// import { PaymentRoutes } from "../modules/payments/payment.routes";
+ import { PaymentRoutes } from "../modules/payments/payment.routes";
 // import { reportsRoutes } from "../modules/reports/reports.routes";
 // import { reviewRoutes } from "../modules/review/review.routes";
 import { userRoutes } from "../modules/user/user.routes";
@@ -35,10 +35,10 @@ const moduleRoutes = [
   //   path: "/reports",
   //   route: reportsRoutes,
   // },
-  // {
-  //   path: "/payments",
-  //   route: PaymentRoutes,
-  // },
+  {
+    path: "/payments",
+    route: PaymentRoutes,
+  },
   // {
   //   path: "/favourite-events",
   //   route: favouriteEventsRoutes,
